@@ -1,4 +1,4 @@
-Intend : 라인 들여쓰기. 고수 가장 중요하게 여긴다. tab 사용
+Indent : 라인 들여쓰기. 고수 가장 중요하게 여긴다. tab 사용
 Format : 띄여쓰기 ' '
 tab : 들여쓰기
 shift + tab : 역들여쓰
