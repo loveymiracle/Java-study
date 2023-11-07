@@ -1,5 +1,5 @@
 // 패키지 명 : 폴더 구분 또는 소스코드 그룹핑 용
-package com.multi;
+package com.home;
 
 //import  외부 패키지를 가져오는 명령어
 //F3을 누르면 위치를 열 수 있다.
