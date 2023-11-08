@@ -27,4 +27,3 @@ public class ControlPractice {
 			System.out.println("양수가 아니다");
 		}
 	}
-	
