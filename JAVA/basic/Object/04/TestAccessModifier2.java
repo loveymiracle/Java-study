@@ -1,6 +1,6 @@
 
 //외부 패키지에서 Class를 가져올 때 쓰는 import
-import com.hw.ex04.access_modifier.AccessModifier;
+import hw.ex04.access_modifier.AccessModifier;
 
 // 다른 패키지의 Class 영역
 public class TestAccessModifier {
