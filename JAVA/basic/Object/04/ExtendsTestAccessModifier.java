@@ -1,5 +1,5 @@
 
-import com.hw.ex04.access_modifier.AccessModifier;
+import hw.ex04.access_modifier.AccessModifier;
 
 // 상속 시킬 클래스, 나중에 상속 때 다시 배울 예정...
 public class ExtendsTestAccessModifier extends AccessModifier{
