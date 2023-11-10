@@ -1,6 +1,6 @@
 
-import com.multi.ex02.object.Member;
-import com.multi.ex02.object.MemberVO;
+import hw.ex02.object.Member;
+import hw.ex02.object.MemberVO;
 
 // 실행 클래스의 일종, 따로 멤버 변수나 메소드 없이 main만 가지는 Class
 public class Run {
