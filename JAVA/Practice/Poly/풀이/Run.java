@@ -1,6 +1,6 @@
 package hw.poly.run;
 
-import com.multi.poly.view.LibraryMenu;
+import hw.poly.view.LibraryMenu;
 
 public class Run {
 
