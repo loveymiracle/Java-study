@@ -1,4 +1,3 @@
-package com.multi.ex01.statement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
