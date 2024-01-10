@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련 태그</title>
+</head>
+<body>
+    <h1>영역관련 태그</h1>
+    <hr>
+
+    <h3>div태그 ★★★★★ (Division)</h3>
+    <div> - html문서에서 부분 또는 색션을 정의하기 위해 블록요소로 활용되는 태그</div>
+    <div> - 주로 다른 태그를 감싸는 컨테이너(요소안에 요소가 있는 형태)로 활용됨</div>
+    <div> - 대표적인 블록태그로 감싸면 한줄이 자동으로 개행 되는 효과 발생 (br)</div>
+    <div> - 디자인적인 요소는 거의 없는 무색무취 같은 태그 -> css를 적용하는 것이 일반적</div>
+    <div> - 주로 CSS나 javascript에서 조작하는 단위로 활용됨 -> id를 부여해서</div>
+    <hr><br>
+    <h3>div 실습</h3>
+    <div>div 영역1</div>
+    <div>div 영역2</div>
+    <hr><br>
+
+    <h3>div 응용1</h3>
+    <div style="border: 1px solid black;">
+        블록 영역입니다.
+    </div>
+    <hr><br>
+
+    <h3>div 응용2 - 높이/너비 지정하기</h3>
+    <div style="border: 1px solid black; height: 100px; width: 300px;">
+        블록 영역입니다.
+    </div>
+    <hr><br>
+
+    <h3>div 응용3 - text 정렬 하기</h3>
+    <div style="border: 1px solid black; height: 100px; width: 300px; text-align:left;">
+        왼쪽 정렬
+    </div>
+    <hr><br>
+    
+    <div style="border: 1px solid black; height: 100px; width: 300px; text-align:center;">
+        가운데 정렬
+    </div>
+    <hr><br>
+
+    <div style="border: 1px solid black; height: 100px; width: 300px; text-align:right;">
+        오른쪽 정렬
+    </div>
+    <hr><br>
+
+    <div style="border: 1px solid black; height: 100px; width: 300px; vertical-align:middle;">
+        수직 정렬? -> 요소를 감싸서 다시 적용이 필요하다. -> css 실습 예정
+    </div>
+    <hr><br>
+
+    <h3>div 응용4 - 색상 지정하기</h3>
+    <div style="border: 1px solid black; height: 100px; width: 300px; background-color:beige; color: brown;">
+        배경 색상 : beige, 글자 색상 : brown
+    </div>
+
+    <h3>span 태그 ★★★★★</h3>
+    <div> - 문서의 인라인 요소를 그룹화하는데 사용하는 대표적인 inline 태그</div>
+    <div> - 단일 목적으로는 사용되지 않는 태그로 반드시 그룹화할때만 사용할 것 -> 단일 요소로 쓸모가 없다.</div>
+    <div> - 용도로는 주로 inline 영역에 css로 지정하거나 그룹핑 할 때만 사용한다.</div>
+    <div> - inline요소형으로 개행이 되지 않고 수평으로 확장할 때 사용한다.</div>
+    <hr><br>
+
+    <h3>span 태그 사용 예시</h3>
+    일반영역과 <span>스팬 영역은</span> 구분할 수 없다.
+    <hr><br>
+
+    <h3>span 응용1</h3>
+    <span style="border: 1px solid;">스펜은 inline 요소 입니다.</span> 이 텍스트는 일반 영역입니다. <br>
+    <span style="color: blueviolet; font-weight: bold;">inline 요소간 분리가 필요할 때 사용합니다.</span> 이 텍스트는 일반 영역입니다.
+    <hr><br>
+
+    <h3>span 응용2 - 높이/너비 지정하기 ※ 그냥하면 안된다!</h3>
+    <span style="height: 100px; width: 100px">스탠은 인라인 영역입니다.</span> 일반 영역입니다. <br>
+
+    <h3>span 응용3 - 높이/너비 지정해보기 - 되는 버전</h3>
+    <div> - display 옵션을 통해 태그의 영역을 inline과 block 그리고 inline-block등 으로 변경할수 있다.</div>
+    <div> - inline-block 옵션은 인라인 요소인데, 너비나 높이가 지정 가능한 태그로 변경된다.</div>
+    <span style="height: 100px; width: 300px; display: inline-block;">스탠은 인라인 영역입니다.</span> 일반영역입니다. <br>
+
+    <h3>div-span 응용 3x3 영역 만들기</h3>
+    <div>
+        <span style="height: 100px; width: 300px; display: inline-block; background: red;">영역1</span>
+        <span style="height: 100px; width: 300px; display: inline-block; background: blue;">영역2</span>
+        <span style="height: 100px; width: 300px; display: inline-block; background: green;">영역3</span>
+    </div>
+    <div>
+        <span style="height: 100px; width: 300px; display: inline-block; background: rgb(215, 107, 107);">영역1</span>
+        <span style="height: 100px; width: 300px; display: inline-block; background: rgb(96, 96, 197);">영역2</span>
+        <span style="height: 100px; width: 300px; display: inline-block; background: rgb(99, 206, 99);">영역3</span>
+    </div>
+    <div>
+        <span style="height: 100px; width: 300px; display: inline-block; background: red;">영역1</span>
+        <span style="height: 100px; width: 300px; display: inline-block; background: blue;">영역2</span>
+        <span style="height: 100px; width: 300px; display: inline-block; background: green;">영역3</span>
+    </div>
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>
