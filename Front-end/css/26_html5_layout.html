@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html5 - layout</title>
+    <style>
+        div,
+        section,
+        header,
+        aside,
+        footer {
+            padding: 11px;
+        }
+        
+        .container {
+            background-color: floralwhite;
+            width: 960px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: lightgray;
+            height: 100px;
+        }
+        
+        .header_text {
+            margin-top: -5px;
+            color: white;
+            font-size: 25pt;
+        }
+        
+        nav {
+            float: right;
+            /* transform: translateY(-10px); */
+            margin-top: -10px;
+        }
+        
+        nav ul li {
+            list-style: none;
+            float: left;
+        }
+        
+        li a {
+            text-decoration: none;
+            padding: 0 10px;
+            color: black;
+            font-weight: bold;
+            font-size: 14pt;
+        }
+        
+        li a:hover {
+            color: white;
+            transition: all 300ms;
+        }
+        
+        section {
+            width: 70%;
+            display: inline-block;
+            background-color: mintcream;
+            vertical-align: top;
+            height: 510px;
+        }
+        
+        aside {
+            width: 24.8%;
+            display: inline-block;
+            background-color: palegreen;
+            height: 510px;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: lightsteelblue;
+            clear: both;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2 class="header_text">Header</h2>
+            <nav>
+                <ul class="navi">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">HTML5</a></li>
+                    <li><a href="#">CSS3</a></li>
+                    <li><a href="#">JQuery</a></li>
+                    <li><a href="#">Mobile</a></li>
+                    <li><a href="#">PC</a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+        <section class="content">
+            <article>
+                <h3>Article1</h3>
+                <p>'용감한 시민'은 한때 복싱 기대주였지만 기간제 교사가 된 소시민(신혜선 분)이 정규직 교사가 되기 위해 참아야만 하는 불의를 마주하며 벌어지는 이야기를 그린 생활 밀착형 히어로 액션 영화다. 드라마 '철인왕후', '단, 하나의 사랑', '서른이지만 열일곱입니다', 영화 도굴', '결백' 등 다양한 작품을 선보여 온 신혜선이 '용감한 시민'을 통해 불의를 아주 잘 참는 생활 밀착형 히어로 소시민 역을 맡아 변신을 선보인다.</p>
+            </article>
+            <article>
+                <h3>Article2</h3>
+                <p>'용감한 시민'은 한때 복싱 기대주였지만 기간제 교사가 된 소시민(신혜선 분)이 정규직 교사가 되기 위해 참아야만 하는 불의를 마주하며 벌어지는 이야기를 그린 생활 밀착형 히어로 액션 영화다. 드라마 '철인왕후', '단, 하나의 사랑', '서른이지만 열일곱입니다', 영화 도굴', '결백' 등 다양한 작품을 선보여 온 신혜선이 '용감한 시민'을 통해 불의를 아주 잘 참는 생활 밀착형 히어로 소시민 역을 맡아 변신을 선보인다.</p>
+            </article>
+            <article>
+                <h3>Article3</h3>
+                <p>'용감한 시민'은 한때 복싱 기대주였지만 기간제 교사가 된 소시민(신혜선 분)이 정규직 교사가 되기 위해 참아야만 하는 불의를 마주하며 벌어지는 이야기를 그린 생활 밀착형 히어로 액션 영화다. 드라마 '철인왕후', '단, 하나의 사랑', '서른이지만 열일곱입니다', 영화 도굴', '결백' 등 다양한 작품을 선보여 온 신혜선이 '용감한 시민'을 통해 불의를 아주 잘 참는 생활 밀착형 히어로 소시민 역을 맡아 변신을 선보인다.</p>
+            </article>
+        </section>
+
+        <aside>
+            <h3>Aside</h3>
+            <p>오늘 날씨 맑음</p>
+        </aside>
+
+        <footer>
+            <h3>Footer</h3>
+            <p>ⓒCopyrigt 2023, <strong>Multicampus</strong> ☎ 02-1234-5679</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
