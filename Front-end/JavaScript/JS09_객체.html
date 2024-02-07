@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 Object</title>
+    <style>
+        div {
+            border: 1px black solid;
+            width: 400px;
+            height: 100px;
+            background-color: rgb(241, 241, 241);
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>객체 Object (Java에서의 Map, JSON)</h1>
+    <p> - 객체지향 문법의 객체를 의미하고, 필드에 멤버변수와 메소드(함수)가 결합된 형태로 문법 제공</p>
+    <p> - vs 절차지향은 데이터(구조체)와 함수로 구성되어 있으며, 데이터와 함수가 분리된 형태</p>
+    <hr><br>
+
+    <h3>객체의 선언과 호출</h3>
+    <p> - 객체는 객체형(object)로 식별되고, 키값을 통해 속성(메소드, 멤버변수)를 식별 가능</p>
+    <p> - 중괄호를 사용해서 객체를 표현하고, 내부에는 메소드 멤버변수를 선언 가능</p>
+    <p> - ES6 표준 문법 이후에는 class를 통해 객체를 구현할수도 있다.</p>
+
+    <button onclick="test1(member);"> 실행1 </button>
+    <button onclick="test2(user);"> 실행2 </button>
+    <button onclick="test3(member);"> 실행3 </button>
+    <div id="div1" style="height: 300px;"></div>
+
+    <script>
+        var member1 = new Object();
+        var member2 = {};
+        document.write(typeof member1 + '<br>'); // object
+        document.write(typeof member2 + '<br>'); // object
+
+        // 1. 멤버변수 있는 객체 선언만 하는 방법
+        // var member = {
+        //     name, age, phone, hobby,
+        // };
+
+        // 2. 선언과 동시에 초기화 하는 방법
+        var member = {
+            name : '홍길동',
+            age : 24,
+            phone : '010-1234-5678',
+            hobby : ['게임', '영화보기', '산책'],
+        };
+
+        // 3. class를 통해 객체를 선언하는 방법
+        //    -> class 설계를 통해 규격화가 가능한 문법
+        class User{
+            // 생성자를 통해 사용할 값을 받아와 초기화 시킨다.
+            constructor(name, age, phone){
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+            }
+        }
+        var user = new User('최길동', 24, '010-1234-4321');
+        user.name = '황길동';
+
+        function test1(member){
+            // member, 일반 객체 활용법
+            var div1 = document.getElementById('div1');
+            div1.innerHTML = '객체 : ' + member + '<br>';
+
+            // 객체 접근하는 방법1 - ['속성명']
+            div1.innerHTML += '이름 : ' + member['name'] + '<br>';
+            div1.innerHTML += '나이 : ' + member['age'] + '<br>';
+            div1.innerHTML += '전번 : ' + member['phone'] + '<br>';
+            div1.innerHTML += '취미 : ' + member['hobby'] + '<br>';
+            div1.innerHTML += '취미1 : ' + member['hobby'][0] + '<br>';
+            div1.innerHTML += '취미2 : ' + member['hobby'][1] + '<br><br>';
+
+            // 객체 접근하는 방법2 - '.' 을 활용
+            div1.innerHTML += '이름 : ' + member.name + '<br>';
+            div1.innerHTML += '나이 : ' + member.age + '<br>';
+            div1.innerHTML += '전번 : ' + member.phone + '<br>';
+            div1.innerHTML += '취미 : ' + member.hobby + '<br>';
+            div1.innerHTML += '취미1 : ' + member.hobby[0] + '<br>';
+            div1.innerHTML += '취미2 : ' + member.hobby[1] + '<br><br>';
+        }
+
+        function test2(user){
+            // user, ES6로 선언한 class 객체 활용법, 결론 = 차이점 없다!
+            var div1 = document.getElementById('div1');
+            div1.innerHTML = '객체 : ' + user + '<br>';
+
+            // 객체 접근하는 방법1 - ['속성명']
+            div1.innerHTML += '이름 : ' + user['name'] + '<br>';
+            div1.innerHTML += '나이 : ' + user['age'] + '<br>';
+            div1.innerHTML += '전번 : ' + user['phone'] + '<br>';
+
+            // 객체 접근하는 방법2 - '.' 을 활용
+            div1.innerHTML += '이름 : ' + user.name + '<br>';
+            div1.innerHTML += '나이 : ' + user.age + '<br>';
+            div1.innerHTML += '전번 : ' + user.phone + '<br>';
+        }
+
+        function test3(member){
+            // 기타 문법
+            var div1 = document.getElementById('div1');
+
+            // in 키워드 사용 예시
+            div1.innerHTML = '이름이 있는지?' + ('name' in member) + '<br>';
+            div1.innerHTML += '주소가 있는지?' + ('address' in member) + '<br>';
+
+            // with 키워드 사용
+            with(member){
+                // member 를 생략해서 변수명으로 멤버변수 접근 가능
+                div1.innerHTML += '이름 : ' + name + '<br>';
+                div1.innerHTML += '나이 : ' + age + '<br>';
+                div1.innerHTML += '전번 : ' + phone + '<br>';
+            }
+        }
+    </script>
+    <hr><br>
+
+    <h3>객체의 메소드 선언</h3>
+    <p> - 객체의 속성중 함수 자료형을 포함시켜 생성하는 방법</p>
+    <button onclick="test4();">실행1</button>
+    <button onclick="test5();">실행2</button>
+    <div id="div2"></div>
+    <script>
+        // this : 자신을 가리키는 키워드
+        var member2 = {
+            'name' : '박길동',
+            age : '박길동',
+            name : 29,
+            phone : '010-1234-5678',
+            // 메소드 선언법
+            print : function(e){
+                e.innerHTML = '이름 : ' + this.name + '<br>';
+                e.innerHTML += '나이 : ' + this.age + '<br>';
+                e.innerHTML += '전번 : ' + this.phone + '<br>';
+                // return 0;
+            }
+        }
+
+        class User2 /*extends parent*/ { // 상속도 가능!!
+            constructor(name, age, phone) {
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+            }
+
+            // setter 만드는 방법
+            set name(name){
+                this._name = name + '님';
+            }
+
+            // getter 만드는 방법
+            get name(){
+                return this._name + '@@@@';
+            }
+
+            // 일반 메소드
+            toString(){
+                return this.name + ', ' + this.age + ', ' + this.phone;
+            }
+
+            print(element){
+                element.innerHTML += '이름 : ' + this.name + '<br>';
+                element.innerHTML += '나이 : ' + this.age + '<br>';
+                element.innerHTML += '전번 : ' + this.phone + '<br>';
+            }
+        }
+
+        var user2 = new User2('황길동', 31, '010-4444-1234');
+
+        function test4() {
+            var div2 = document.getElementById('div2');
+            member2.print(div2);
+        }
+
+        function test5(){
+            var div2 = document.getElementById('div2');
+            div2.innerHTML = user2.toString() + '<br>';
+            user2.print(div2);
+        }
+    </script>
+    <hr><br>
+
+    <h3>객체의 반복문 사용</h3>
+    <p> - 객체 속성을 접근하기 위해선 'i'로 접근할수 없다. -> for in 문법을 사용하여 접근</p>
+    <button onclick="test6(member)">실행</button>
+    <div id="div5"></div>
+    <script>
+        var member = {
+            name : '김길동',
+            age : 20,
+            phone : '010-1234-5678',
+            hobby : ['게임','영화보기','맛집탐당','산책','마라톤','헬스'],
+            toString(){
+                return this.name + ', ' + this.age + ', ' + this.phone;
+            }
+        };
+
+        function test6(member){
+            var div5 = document.getElementById('div5');
+            str = '';
+            for(let key in member){
+                // 함수 제거하는 방법1, 이름으로 필터링?
+                // if(key == 'toString'){
+                //     continue;
+                // }
+
+                // 함수 제거하는 방법2, type으로 필터링
+                if(typeof member[key] == 'function'){
+                    continue;
+                }
+
+                str += key + ' : ' + member[key] + '<br>';
+            }
+            div5.innerHTML = str;
+        }
+    </script>
+    <hr><br>
+
+    <h3>객체 입력활용</h3>
+
+    <input type="text" name="name" id="name" placeholder="이름 입력"><br>
+    <input type="text" name="kor" id="kor" placeholder="국어 점수"><br>
+    <input type="text" name="eng" id="eng" placeholder="영어 점수"><br>
+    <input type="text" name="math" id="math" placeholder="수학 점수"><br>
+
+    <button onclick="test7();">실행1</button>
+    <button onclick="test8();">실행2</button>
+    <div id="div6"></div>
+
+    <script>
+        var student = {
+            name,
+            kor,
+            eng,
+            math,
+        };
+
+        function test7(){
+            student.name = document.getElementById('name').value;
+            student.kor = document.getElementById('kor').value;
+            student.eng = document.getElementById('eng').value;
+            student.math = document.getElementById('math').value;
+
+            var div6 = document.getElementById('div6');
+            div6.innerHTML = '';
+            for(let key in student){
+                div6.innerHTML += key + ' : ' + student[key] + '<br>'
+            }
+        }
+
+        function test8(){
+            for(let key in student){
+                student[key] = document.getElementById(key).value;
+            }
+
+            var div6 = document.getElementById('div6');
+            div6.innerHTML = '';
+
+            for(let key in student){
+                div6.innerHTML += key + ' : ' + student[key] + '<br>'; 
+            }
+        }
+    </script>
+    <hr><br>
+
+    <h3>객체의 속성 추가 및 제거하는 방법</h3>
+    <button onclick="test9();">실행</button>
+    <div id="div8" style="height: 200px;"></div>
+    <script>
+        function test9(){
+            var member = {};
+            // var member = Object();
+            // var memeber = new Object();
+            printMember(member); // 출력 없음
+
+            // 객체 속성 중간에 추가하는 방법
+            member.name = '홍길동';
+            member.age = 21;
+            member.hobby = ['음악감상', '오페라 보기'];
+
+            // 객체 삭제하기
+            member.name = null; // 객체가 아닌 null로 값을 바꾸는 방법
+            delete member.hobby;
+            printMember(member);
+        }
+
+        function printMember(member){
+            var div8 = document.getElementById('div8');
+            var str = '';
+            for(let key in member){
+                str += key + ' : ' + member[key] + '<br>';
+            }
+            div8.innerHTML = str + '<br>';
+        }
+    </script>
+    <hr><br>
+
+    <h3> Json(객체) 다루기 (마샬링, 언마샬린)</h3>
+    <p> - 마샬링 : 객체(json)을 문자열로 변환</p>
+    <p> - 언마샬링 : 문자열로 받은 Json을 실제 사용할수 있는 객체로 변환 </p>
+    <button onclick="test10();">실행</button>
+    <div id="div9" style="height: 200px;"></div>
+    <script>
+        function test10(){
+            var member = {
+                name: '홍길동',
+                age: 31,
+                tel: '010-1234-5678',
+                hobby: ['게임', '영화보기'],
+            };
+
+            // 마샬링, object -> str로 만드는 과정
+            var jsonStr = JSON.stringify(member);
+
+            var jsonObj = JSON.parse(jsonStr);
+
+            var div9 = document.getElementById('div9');
+            div9.innerHTML += 'Type<br>' 
+            div9.innerHTML += 'jsonStr : ' + typeof(jsonStr) + '<br>'
+            div9.innerHTML += 'jsonObj : ' + typeof(jsonObj) + '<br><br>'
+            
+            div9.innerHTML += 'jsonStr : ' + jsonStr + '<br>'
+            div9.innerHTML += 'jsonObj : ' + jsonObj + '<br>'
+
+            var str = '';
+            for(var key in jsonObj){
+                str += key + ':' + jsonObj[key] +', '
+             } 
+             div9.innerHTML += 'jsonObj(str) : ' + str + '<br>'
+        }
+    </script>
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    
+</body>
+</html>
