@@ -1,4 +1,4 @@
-package com.multi.basic.member.model.dao;
+package com.basic.member.model.dao;
 
 import java.util.List;
 
