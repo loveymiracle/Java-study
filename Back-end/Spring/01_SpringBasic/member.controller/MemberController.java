@@ -1,4 +1,4 @@
-package com.multi.basic.member.controller;
+package com.basic.member.controller;
 
 import java.io.IOException;
 import java.io.Writer;
