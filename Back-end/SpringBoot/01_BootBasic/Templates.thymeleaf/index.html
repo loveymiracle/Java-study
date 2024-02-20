@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!-- 네임스페이스 추가 태그 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Thymeleaf</h2>
+	- JSP를 대체하기 위한 Spring Boot의 Templates Engine으로 View를 담당한다. <br>
+	- 특징은 html 포멧을 많이 벗어나지 않고, 태그의 옵션처럼 보일수 있게 구성<br>
+	- 기능 적으로는 JSP와 거의 유사하다. (사실상 JSP 3.0이라고 생각한다.)<br>
+	- 참고 : https://catsbi.oopy.io/32a9458e-f452-4733-b87c-caba75f98e2d
+	
+	<h3>0. 설정하는 방법</h3>
+	- Spring Boot 프로젝트 셋팅시 thymeleaf 의존성을 추가한다.(수동으로도 가능) <br>
+	- html 태그 옵션에 xmlns 태그(네임스페이스 태그)를 추가한다. <br> 
+	ex) &gt; html xmlns:th="http://www.thymeleaf.org" &lt;
+	<!-- <xmlns:th="http://www.thymeleaf.org"> -->
+	<hr><br>
+	
+	<h3>1. HTML 화면 출력하는 방법</h3>
+	<b>1) Java에서 넘어온 문자열 출력하기</b>
+	- HTML 태그 옵션값이 th:text="${~~}"로 java에서 model로 넘어온 데이터를 출력할수 있다. <br>
+	일반 표기법1 : <span th:text="${str}"></span> <br> 
+	일반 표기법2 : <span th:text=${str}></span> <br> 
+	잘못된 표기법 : ${str} ※ 안되는 문법, EL을 바로 출력할수 없다. <br>
+	인라인 표기법 : [[${str}]]<br>
+	인라인 표기법1 : [[${str2}]] - 특수문자가 escape 되어 출력된다.<br>
+	인라인 표기법2 : [(${str2})] - 특수문자를 unescape 처리하는 방법, 태그가 노출됨!<br>
+	인라인 표기법을 통해 Javascript 데이터 넣어보기 <br>
+	<script type="text/javascript">
+		// alert('[[${str}]]');
+		var str = '[(${str2})]'; // java 스크립트 코드로 그냥 노출 시킬때
+	</script>
+	<hr><br>
+	
+	
+	<b>2) 문자열 결합하기 (Java + Java, HTML + Java)</b><br>
+	- 출력할 문자열의 결합이 필요한 경우 결합이 가능하다. <br>
+	결합1 : <span th:text="'안녕하세요? ' + ${name} + '님이 로그인하였습니다.'"></span> <br>
+	결합2 : <span th:text="|안녕하세요? ${name} 님이 로그인하였습니다.|"></span> <br>
+	결합3 : <span th:with="start='안녕하세요? ', end = '님이 로그인 하셨습니다.'"
+				 th:text="${start} + ${name} + ${end}"></span> <br>
+	결합4 : 안녕하세요? [[${name}]]님이 로그인 하였습니다. ★★★★★<br>
+	<hr><br>
+	
+	<b>3) 주소값 처리하기 @{~~}</b>
+	- context path 대신에 처리하는 방법으로 권장됨, 대신 context path가 없는 경우 없어도 무관하다. <br>
+	a태그 일반 : <a th:href="@{/request}">링크 이동</a> <br>
+	a태그 + 파라미터1 : <a th:href="@{/request(value1=${str})}">링크 이동</a> <br>
+	a태그 + 파라미터2: <a th:href="@{/request(value1=${str}, value2=${name})}">링크 이동</a> <br>
+	a태그 + 파라미터 인라인처리(안된다!!) : <a href="/request?value1=[[${str}]]&value2=[[${name}]]">링크 이동</a> <br>
+	a태그 + 파리미터(list 처리) : <a th:href="@{/request(values=${list})}">링크</a><br>
+	리소스, img 가져오는 방법 <br>
+	정석 : <img width="100px" th:src="@{/images/logo-spring.png}"><br>
+	<!-- context path가 없음으로 th를 안써도 잘 먹힌다. -->
+	비정석 : <img width="100px" src="/images/logo-spring.png"><br>
+	<!-- javascript -->
+	<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+	<!-- css -->
+<!-- 	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"> -->
+	<hr><br>
+	
+	<b>4) 숫자 처리하는 방법</b>
+	<div th:with="x=12345678, y=123456.789, z=0.05">
+		정수형 : <span th:text="${#numbers.formatInteger(x, 3,'COMMA')}"></span><br>
+		부동소수점 : <span th:text="${#numbers.formatDecimal(y, 3,'NONE', 2, 'POINT')}"></span><br>
+		퍼센트 : <span th:text="${#numbers.formatPercent(z, 2, 2)}"></span><br>
+		원화 : <span th:text="${#numbers.formatCurrency(x)}"></span>
+	</div>
+	<hr><br>
+	
+	<b>5) 날짜 처리하기</b><br>
+	- 현재 날짜 출력 : <span th:text="${#dates.createNow()}"></span><br>
+	- Java 날짜 출력 : <span th:text="${date}"></span><br>
+	- 기본 포멧1 : <span th:text="${#dates.format(date)}"></span><br>
+	- 기본 포멧2 : <span th:text="${#dates.formatISO(date)}"></span><br>
+    - 사용자 포멧 : <span th:text="${#dates.format(date, 'yyyy/MM/dd (E) hh:mm:ss')}"></span><br>
+    - 사용자 포멧 : <span th:text="${#dates.format(date, 'yyyy/MM/dd (E) a hh:mm:ss')}"></span><br>	
+    - 사용자 포멧 : <span th:text="${#dates.format(date, 'yyyy/MM/dd (E) HH:mm:ss')}"></span><br>	
+	- 년 : <span th:text="${#dates.year(date)}"></span><br>
+	- 월 : <span th:text="${#dates.month(date)}"></span><br>
+	- 일 : <span th:text="${#dates.day(date)}"></span><br>
+	<hr><br>
+	
+	<b>6) 문자열 처리하기</b><br>
+	- 대문자 변환 : <span th:text="${#strings.toUpperCase(str)}"></span><br>
+	- null 확인 : <span th:text="${#strings.isEmpty(str)}"></span><br>
+	- null 확인 : <span th:text="${#strings.isEmpty(str) ? '비었습니다.' : '안비었습니다.'}"></span><br>
+	- 길이 : <span th:text="${#strings.length(str)}"></span><br>
+	- indexOf : <span th:text="${#strings.indexOf(str,'Boot')}"></span><br>
+	<hr><br>
+
+	<b>7-1) 객체 접근하기 (.으로)</b><br>
+	- id : [[${member.id}]] <br>
+	- name : [[${member.name}]] <br>
+	- age : [[${member.age}]] <br>
+	<hr><br>	
+
+	<b>7-2) 객체 접근하기 ([]로 접근, 맵에서도 활용 가능!)</b><br>
+	- id : [[${member['id']}]] <br>
+	- name : [[${member['name']}]] <br>
+	- age : [[${member['age']}]] <br>
+	- id(map) : [[${map['id']}]] <br>
+	- name(map) : [[${map['name']}]] <br>
+	- age(map) : [[${map['age']}]] - 없으면 공백으로 처리됨 <br>
+	<hr><br>	
+	
+	<b>7-3) 객체 접근하기 (*로 접근하는 방법)</b><br>
+	- th:block : 비어있는 태그로 실제 html문서에 출력되지 않는 빈공간 <br>
+	<th:block th:object="${member}">
+		- id : [[*{id}]]<br>
+		- name : [[*{name}]]<br>	
+		- age : [[*{age}]]<br>
+	</th:block>
+	<hr><br>
+	
+	<b>8) list 접근하기</b><br>
+	- index 0 : [[${list[0]}]]<br>
+	- index 1 : [[${list[1]}]]<br>
+	- index 2 : [[${list[2]}]]<br>
+	- index 3 : [[${list[3]}]]<br>
+<!-- 	- index 100 : <th:block th:text="${list[100]}" /> -->
+	- 인덱스 범위를 벗어나면 ERROR가 발생한다. 주의 요망! <br>
+	<hr><br>
+	
+	<b>9) map 접근하기 </b><br>
+	- id :  [[${map['id']}]]<br>
+	- name :  [[${map['name']}]]<br>
+	- 없는 값 :  [[${map['noValue']}]]<br>
+	- 없는 값은 공백으로 처리된다. <br> 
+	<hr><br>
+
+	<h3>2. 조건문</h3>
+	<b>1) 논리 연산자</b><br>
+	5 > 10 : <th:block th:text="5 > 10" /><br>
+	5 &lt; 10 : <th:block th:text="5 < 10" /><br>
+	5 >= 10 : <th:block th:text="5 >= 10" /><br>
+	5 &lt;= 10 : <th:block th:text="5 <= 10" /><br>
+	5 == 10 : <th:block th:text="5 == 10" /><br>
+	5 != 10 : <th:block th:text="5 != 10" /><br>
+	name == 홍길동 : <th:block th:text="${name} == '홍길동'" /><br>
+	name != 홍길동 : <th:block th:text="${name} != '홍길동'" /><br>
+	<hr><br>
+	
+	<b>2) 삼항연산자</b><br>
+	<th:block th:text="${name} == '홍길동' ? ${name} + '입니다.' : ${name} +'은 홍길동이 아닙니다.'" /><br>
+	<hr><br>
+	
+	<b>3) if문</b><br>
+	<th:block th:if="${name} == '홍길동'">
+		[[${name}]]은 홍길동입니다.<br>
+	</th:block>
+	<th:block th:if="${name} != '홍길동'">
+		[[${name}]]은 홍길동이 아닙니다.<br>
+	</th:block>
+	
+	<!-- 문자열이 비었는지 확인하는 방법 -->
+	<th:block th:if="${#strings.isEmpty(name)}">
+		비었습니다 <br>
+	</th:block>
+	<!-- 비어있지 않은 조건1 -->
+	<th:block th:if="${!#strings.isEmpty(name)}">
+		안 비었습니다 <br>
+	</th:block>
+	<!-- 비어있지 않은 조건2 -->
+	<th:block th:if="${#strings.isEmpty(name) == false}">
+		안 비었습니다 <br>
+	</th:block>
+	
+	<!-- else문 대체하는 문장 : th:unless -->
+	<th:block th:unless="${#strings.isEmpty(name)}">
+		비어있지 않습니다. <br>
+	</th:block>
+	<hr><br>
+	
+	<b>4) switch문</b><br>
+	<th:block th:switch="${name}">
+		<span th:case="홍길동">홍길동입니다.</span>
+		<span th:case="최길동">최길동입니다.</span>
+	</th:block>
+	<hr><br>
+	
+	<h3>3. 반복문</h3>
+	<b>1) 단순 반복문</b><br>
+	<th:block th:each="item : ${list}">
+		<div th:text="${item}"></div>
+	</th:block>	
+	<br>
+
+	<b>2) 객체 list 반복문</b><br>
+	<th:block th:each="member : ${memberList}">
+		id : [[${member.id}]]<br>
+		이름 : [[${member.name}]]<br>
+		나이 : [[${member.age}]]<br>
+		좋아하는 언어 : 
+		<th:block th:each="item : ${member.devLang}">
+			[[${item}]] 
+		</th:block>
+		<br><br>
+	</th:block>	
+	
+	<b>3) status 활용하기</b><br>
+	<div th:each="member, status : ${memberList}" th:object="${member}">
+		index :  [[${status.index}]]<br> 
+		count :  [[${status.count}]]<br>
+		size :  [[${status.size}]]<br> 
+		current :  [[${status.current}]]<br> 
+		even :  [[${status.even}]]<br> 
+		odd : [[${status.odd}]]<br> 
+		first : [[${status.first}]]<br>  
+		last : [[${status.last}]]<br>  
+		[[*{id}]] : [[*{name}]]<br> 
+		<th:block th:if="${status.index} % 2 == 0">
+			짝수입니다.<br> 
+		</th:block>
+		<br> 
+	</div>
+	<hr><br>
+	
+	
+	<h3>4. Layout</h3>
+	- header, footer를 include 할경우 사용 가능하다.
+	<!--
+	layout.html
+	 
+	<div th:fragment="div1">
+		<div id="div2">
+			fragment div1안에 div2 입니다.
+		</div>
+	</div>
+
+	<div id="div3">
+		<div id="div4">
+			div태그의 div3 안에 div4 입니다.
+		</div>
+	</div>
+	 -->
+	- th:replace : 구문 자체를 대체하는 방법으로 감싼 태그의 속성이 사라진다. <br>
+	- th:include : 포함으로써 밖에 감싼 태그가 유지가 되는 차이가 있다. <br><br>
+
+	<p th:replace="thymeleaf/layout :: div1"></p><br>
+	<p th:include="thymeleaf/layout :: #div3"></p>
+	<hr><br>
+	
+	<h3>4. 입력용 form 활용</h3>
+	<b>1) 일반 form으로 전송하는 방법</b><br>
+	<form th:action="@{/join}" method="post">
+		id : <input type="text" name="id"><br>
+		이름 : <input type="text" name="name"><br>
+		나이 : <input type="text" name="age"><br>
+		<input type="submit" value="전송">
+	</form>
+	<br>
+	
+	<b>2) 일반 form으로 전송하는 방법(비정석, th 없어도 되긴한다.)</b><br>
+	<form action="/join" method="post">
+		id : <input type="text" name="id"><br>
+		이름 : <input type="text" name="name"><br>
+		나이 : <input type="text" name="age"><br>
+		<input type="submit" value="전송">
+	</form>
+	<br>
+	
+	<b> 3) update form 설계하기</b><br>
+	 - th:value, th:field로 기존 값을 iuput 시킬수 있다.<br> 
+	<form th:action="@{/join}" method="post">
+		id : <input type="text" name="id" th:value="${member.id}"><br>
+		이름 : <input type="text" name="name"  th:value="${member.name}"><br>
+		나이 : <input type="text" name="age"  th:value="${member.age}"><br>
+		<input type="submit" value="전송">
+	</form>
+	<br>
+	
+	<form th:action="@{/join}" method="post">
+		id : <input type="text" name="id" th:field="${member.id}"><br>
+		이름 : <input type="text" name="name" th:field="${member.name}"><br>
+		나이 : <input type="text" name="age" th:field="${member.age}"><br>
+		<input type="submit" value="전송">
+	</form>
+	<br>
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
