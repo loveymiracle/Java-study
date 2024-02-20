@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Spring Boot Basic</h1>
+	
+	<h3>Spring Boot란?</h3>
+	 - Spring의 업그레이드 버전, 기존 Spring Framework의 문제점을 크게 개선한 프레임워크 <br><br>
+	<a href ="https://programforlife.tistory.com/68"> Boot에 대해 정리 잘 된 블로그 </a>
+	<br>
+	<h4>Spring Framework의 주요 문제점과 개선점!</h4>
+	   1) XML 지옥, Bean, 어노테이션이 섞인 환장의 콜라보로 인한 지속적인 복잡성 증대 <br>
+	    해결 : XML을 없애고, 어노테이션 + Bean 조합으로 프로젝트 설정이 가능하다. <br> <br>
+	   2) 프로젝트 셋팅 어렵고, 의존성 관리가 어렵다. <br>
+	    해결 : 프로젝트 셋팅부터 의존성이 필요한 모듈을 자동으로 셋팅하고, 의존성 관리를 간소화!<br><br>
+	   3) XML 기반의 Configuration 셋팅이 어렵다. (셋팅 관련 xml만 몇개인지...) <br>
+	    해결 : 웬만하면 자동으로 config가 가능하고, 'application.properties'로 모든 셋팅 간소화 <br><br>
+	   4) 프로젝트 개발시 반드시 tomcat이나 WAS가 필요했다. <br>
+	    해결 : TOMCAT 내장을 통해 한방에 실행가능하다!! (배포도 가능하다.) <br> <br>
+	   5) Spring 교육 및 예제 코드가 부족했다.  <br>
+	    해결 : boot 부터는 제대로 지원해줄께 -> 홈페이지 Boot 트레이닝과 예제가 가득해졌다. <br> <br>
+	<hr>
+	
+	<h4>Spring Boot에서 달라진 점</h4>
+	   1) JSP를 공식적으로 지원하지 않는다. (비공식적으로 가능) <br>
+	    - 강사 피셜 - JSP는 오라클 라이선스로... 오라클과 사이가 멀어져서 그렇다고 추측한다. <br>
+	    - 페이지(템플릿) 처리가 필요한 경우 타임리프(Thymeleaf) 사용을 권장한다.<br>
+	    - 사실은 Spring Boot에서 더이상 페이지(템플릿) 처리를 권장하지 않는다.<br>
+	       -> Boot는 REST 설계를 권장한다.<br> <br>
+
+	   2) Tomcat 없이 실행 가능하다. <br>
+	    - run as -> Spring boot 실행하면 알아서 실행가능하다. <br> <br>
+	    
+	   3) 주요 어노테이션은 달라지지 않았다! <br>
+	    - 일반 스프링과 차이점은 환경 셋팅에서 변화가 있고, 어노테이션 체계는 거의 그대로 공유한다. <br>
+	    - 단, Spring Boot에서만 사용될수 있는 어노테이션이 추가되었다. ex) config류, Validation 등 <br> <br>
+	<hr>
+	
+	<h3>thymeleaf 실습하러 가기</h3>
+	<a href="/thymeleaf">thymeleaf 페이지 이동</a>
+	<hr><br>
+		
+	<h3>회원가입 예제 보러가기 </h3>
+	<a href="/member/index.do">회원가입 이동</a>
+</body>
+</html>
