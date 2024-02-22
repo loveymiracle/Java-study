@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Member Main</h1>
+
+	<div th:text="${loginMsg}"></div>	
+	<div th:if="${session.member} != null">
+		<h3>로그인 상태</h3>
+		<span th:text="${session.member.name}"></span>님 환영합니다!<br>
+		<button onclick="location.href = '/member/logout'">로그아웃</button>
+	</div>
+	
+	<div th:if="${session.member} == null">
+		<h3>로그인 기능</h3>
+		<form th:action="@{/member/login}" method="post">
+			id : <input type="text" name="memberId"><br>
+			pw : <input type="password" name="password"><br>
+			<input type="submit" value="로그인">
+		</form>
+	</div>
+	<hr>
+	
+	<h3>멤버 목록 보기</h3>
+	<a th:href="@{/member/allList}">목록</a>
+	<hr>
+	
+	<h3>no로 멤버 찾기 </h3>
+	<form th:action="@{/member/search}" method="get">
+			no : <input type="text" name="mno"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+	
+	<h3>이름으로 멤버 찾기 </h3>
+	<form th:action="@{/member/searchByName}" method="get">
+			name : <input type="text" name=name><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+	
+	<h3>이름/주소로 멤버 찾기1 = where절 </h3>
+	<form th:action="@{/member/searchByNameAddress1}" method="get">
+			name : <input type="text" name=name><br>
+			address : <input type="text" name=address><br>
+			<input type="submit" value="찾기">
+	</form>
+	
+	<h3>이름/주소로 멤버 찾기2 = like </h3>
+	<form th:action="@{/member/searchByNameAddress2}" method="get">
+			name : <input type="text" name=name><br>
+			address : <input type="text" name=address><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+	
+	<div th:if="${session.member} == null">
+		<h3>회원 가입</h3>
+		<form th:action="@{/member/join}" method="post">
+			id : <input type="text" name="memberId"><br>
+			pw : <input type="password" name="password"><br>
+			이름 : <input type="text" name="name"><br>
+			주소 : <input type="text" name="address"><br>
+			<input type="submit" value="회원가입">
+		</form>
+		<div th:text="${joinMsg}"></div>	
+	</div>
+	<hr>
+	
+	<div th:if="${session.member} != null">
+		<h3>회원정보 수정</h3>
+		<form th:action="@{/member/modify}" method="post">
+			no : <input type="text" name="mno" th:value="${session.member.mno}"><br>
+			id : <input type="text" name="memberId" th:value="${session.member.memberId}"><br>
+			pw : <input type="password" name="password" th:value="${session.member.password}"><br>
+			이름 : <input type="text" name="name" th:value="${session.member.name}"><br>
+			주소 : <input type="text" name="address" th:value="${session.member.address}"><br>
+			<input type="submit" value="정보수정">
+		</form>
+		<div th:text="${modifyMsg}"></div>	
+		<hr>
+	</div>
+
+	<h3>회원 탈퇴 </h3>
+	<form th:action="@{/member/delete}" method="get">
+			no : <input type="text" name="mno"><br>
+			<input type="submit" value="탈퇴">
+	</form>
+	<div th:text="${delMsg}"></div>	
+	<hr>
+
+</body>
+</html>
