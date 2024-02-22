@@ -1,4 +1,4 @@
-package com.multi.rest.content.controller;
+package com.rest.content.controller;
 
 import java.util.List;
 
