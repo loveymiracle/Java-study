@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>멤버 목록</h3>
+	<hr>
+	
+	<div th:if="${count} != null">
+	<h4>가입된 멤버 : <span th:text="${count}"> </span>명 </h4>
+	</div>
+	
+	<table border="1">
+		<tr>
+			<td>번호</td>
+			<td>아이디</td>
+			<td>패스워드</td>
+			<td>이름</td>
+			<td>주소</td>
+		</tr>
+
+		<tr th:each="member : ${list}">
+			<td th:text="${member.mno}"></td>
+			<td th:text="${member.memberId}"></td>
+			<td th:text="${member.password}"></td>
+			<td th:text="${member.name}"></td>
+			<td th:text="${member.address}"></td>
+		</tr>
+	</table>
+	<hr>
+</body>
+</html>
