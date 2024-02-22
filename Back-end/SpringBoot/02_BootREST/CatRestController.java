@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.multi.rest.content.model.vo.Cat;
-import com.multi.rest.content.service.CatService;
+import com.rest.content.model.vo.Cat;
+import com.rest.content.service.CatService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
