@@ -1,0 +1,92 @@
+■ 리액트 환경구축
+1. Node.js 환경 설치
+   https://nodejs.org/ko
+2. vs코드에서 터미널 실행
+3. npx를 통해 리액트 기본 프로젝트 임포트 (경로 지정 필요)
+4. npm을 통해 리액트 어플리케이션(서버) 실행
+
+참고 : https://dysong.tistory.com/22
+맥 참고 : https://heeeming.tistory.com/entry/React-%EB%A7%A5Mac-os-VSCODE-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%EC%84%B8%ED%8C%85
+
+
+■ dos 기본 명령
+cd [경로] : 경로이동, tab을 누르면 자동완성됨
+dir : 현재 경로의 폴더 이름보기
+경로 예시 : c:\dev_source\work_space_react 
+종료 : ctrl + c 
+
+
+■ 리액트 앱 생성하기
+npx create-react-app <app name>
+
+> cd <워크스페이스 경로>
+> npx create-react-app 01_basic_jsx
+> npx create-react-app 02_component_props
+> npx create-react-app 03_state_lifecycle
+> npx create-react-app 04_react_event
+> npx create-react-app 05_form
+> npx create-react-app 06_ref_dom
+> npx create-react-app 07_component_list_key
+> npx create-react-app 08_hook
+> npx create-react-app 09_style
+   > npm install sass
+   > npm install classnames --save
+> npx create-react-app 10_route
+   > npm install react-router-dom
+> npx create-react-app 11_mui
+   > npm install react-router-dom
+> npx create-react-app 12_axios
+   > npm install styled-components
+   > npm install react-router-dom
+   > npm install axios 
+> npx create-react-app 13_bootstrap
+   > npm update or npm install
+   > npm run dev
+> npx create-next-app --use-npm 14_react_board
+   > npm install --save-dev eslint-config-prettier
+   > npm install axios 
+   > npm install react-router-dom
+   > npm install @mui/material @emotion/react @emotion/styled
+   > npm install @mui/icons-material
+   > npm install @mui/material @mui/styled-engine-sc styled-components
+   > npm install @fontsource/roboto
+   > npm install styled-components
+   > npm install react-bootstrap bootstrap
+   > npm install @mui/joy @emotion/react @emotion/styled
+   > npm install --save encode-utf8
+
+
+> MUI 설치
+> npm install @mui/material @emotion/react @emotion/styled
+> npm install @mui/icons-material
+> npm install @mui/material @mui/styled-engine-sc styled-components
+> npm install @fontsource/roboto
+
+
+■ npm 명령어 (New Public Management, 자바스크립트 프로그래밍 언어를 위한 패키지 관리자)
+
+1. node.js(리액트 App) 실행하기 (기본 앱 경로에서 ex : 01_basic_jsx/)
+npm start   
+--> node_modules에 있는 패키지를 삭제해서 공유한 경우 npm update를 하고 실행하면 웬만하면 해결
+
+2. 초기화하기 (package.json에 따라 초기화됨)
+npm init
+
+3. 패키지 설치하기
+npm install [패키지명]
+npm install -g [패키지명] // 전역설치
+
+4. 패키지 삭제
+npm uninstall [패키지명]
+
+5. 패키지 업데이트
+npm update [패키지명]
+
+6. 패키지 찾기
+npm search [패키지명]
+
+7. 패키지 정보보기
+npm info [패키지명]
+
+8. Root 디렉터리 찾기
+npm root
