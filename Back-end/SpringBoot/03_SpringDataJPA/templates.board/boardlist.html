@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>게시글 목록</h3>
+	<hr>
+	
+	<div th:if="${count} != null">
+	<h4>게시글 수 : <span th:text="${count}"> </span>개 </h4>
+	</div>
+	
+	<table border="1">
+		<tr>
+			<td>번호</td>
+			<td>제목</td>
+			<td>내용</td>
+			<td>id</td>
+			<td>글쓴사람</td>
+			<td>생성일</td>
+		</tr>
+
+		<tr th:each="board : ${list}">
+			<td th:text="${board.bno}"></td>
+			<td th:text="${board.title}"></td>
+			<td th:text="${board.content}"></td>
+			<td th:text="${board.member.memberId}"></td>
+			<td th:text="${board.member.name}"></td>
+			<td th:text="${board.createDate}"></td>
+		</tr>
+	</table>
+	<hr>
+</body>
+</html>
