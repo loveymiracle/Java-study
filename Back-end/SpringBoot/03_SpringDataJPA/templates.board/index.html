@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Board Main</h1>
+	<hr>
+	
+	<h3>전체 목록 보기(정렬)</h3>
+	<a th:href="@{/board/allList1}">역순으로 정렬된 목록1(sort)</a><br>
+	<a th:href="@{/board/allList2}">2단 정렬</a><br>
+	<hr>
+	
+	<h3>페이지 처리</h3>
+	<form th:action="@{/board/page}" method="get">
+			page : <input type="text" name="page"><br>
+			pageSize : <input type="text" name="pageSize"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+	
+	<h3>title 검색</h3>
+	<form th:action="@{/board/searchTitle}" method="get">
+			title : <input type="text" name="title"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+	
+	<h3>title + content 검색</h3>
+	<form th:action="@{/board/searchTitleAndContent}" method="get">
+			title : <input type="text" name="title"><br>
+			content : <input type="text" name="content"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+	
+	<h3>title + content + memberID 검색</h3>
+	<form th:action="@{/board/searchTitleAndContentAndMemberId}" method="get">
+			title : <input type="text" name="title"><br>
+			content : <input type="text" name="content"><br>
+			memberId : <input type="text" name="memberId"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+		
+	<h3>title 검색 (10개만)</h3>
+	<form th:action="@{/board/searchTitleTen}" method="get">
+			title : <input type="text" name="title"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+		
+	<h3>수동으로 title 검색1</h3>
+	<form th:action="@{/board/searchTitle1}" method="get">
+			title : <input type="text" name="title"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+		
+	<h3>수동으로 title 검색2</h3>
+	<form th:action="@{/board/searchTitle2}" method="get">
+			title : <input type="text" name="title"><br>
+			<input type="submit" value="찾기">
+	</form>
+	<hr>
+</body>
+</html>
