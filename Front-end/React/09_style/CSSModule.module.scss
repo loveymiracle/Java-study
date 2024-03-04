@@ -1,0 +1,26 @@
+// CSSModule 예제로, Sass로도 활용 가능
+// [컴포넌트 이름].module.scss로 네이밍하는 것이 원칙
+
+.wrapper {
+  background: black;
+  padding: 1rem;
+  color: white;
+  font-size: 2rem;
+  &.inverted {
+    // inverted 가 .wrapper 와 함께 사용 했을 때만 적용
+    color: black;
+    background: white;
+    border: 1px solid black;
+  }
+}
+
+// CSS Module 을 사용하고 있는 파일에서 클래스 이름을 고유화 하지 않고 
+// 전역적 클래스이름을 사용하고 싶다면 다음과 같이 작성하면 됩니다.
+:global {
+  // :global {} 로 감싸기
+  .something {
+    font-weight: 800;
+    color: aqua;
+  }
+  // 여기에 다른 클래스를 만들 수도 있다.
+}

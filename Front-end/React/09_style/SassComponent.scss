@@ -1,0 +1,87 @@
+// Sass (Syntactically Awesome Style Sheets)
+// CSS pre-processor로서, 복잡한 작업을 쉽게 할 수 있게 해주고, 
+// 코드의 재활용성을 높여줄 뿐 만 아니라, 코드의 가독성을 높여주어 유지보수를 쉽게 가능하다.
+// .sass 확장자는 Sass의 기존 문법이고, scss는 Sass의 개선된 문법인데,
+//  Sass 사용자들이 대부분 scss를 사용함으로 scss로 예제 구성함
+
+// 변수 선언하는 방법
+$red: #fa5252;
+$orange: #fd7e14;
+$yellow: #fcc419;
+$green: #40c057;
+$blue: #339af0;
+$indigo: #5c7cfa;
+$violet: #7950f2;
+$myGray: #777777;
+$marginSize: 10px;
+
+
+// 믹스인(함수) 만들기
+// - 재사용되는 스타일 블록을 함수처럼 활용할 수 있다.
+@mixin square($size){
+    $calcSize: 32px * $size;
+    width: $calcSize;
+    height: $calcSize;
+}
+
+// 일반 css 아래처럼 구성 가능
+.test{
+    width: 100px;
+    height: 200px;
+    background-color: blue;
+}
+
+// sass의 css설계는 계층구조로 구성할 수 있다.
+.SassComponent{
+    display: flex;
+    background-color: $myGray;
+    margin: $marginSize;
+    margin-top: $marginSize * 2; // 사칙연산 가능
+
+    // 자식 Class 구성
+    .box {
+        background-color: red; // Real red
+        cursor: pointer;
+        transition: all 0.5s ease-in;
+
+        // & : 형제 구성(?), .box 클래스와 .red 클래스가 같이 사용 될 때
+        &.red{
+            background-color: $red; // 변수로 선언된 red
+            @include square(1); // mixin을 사용할 때 사용하는 문법
+        }
+
+        &.orange{
+            background-color: $orange;
+            @include square(2);
+        }
+
+        &.yellow {
+            background: $yellow;
+            @include square(3);
+          }
+      
+          &.green {
+            background: $green;
+            @include square(4);
+          }
+      
+          &.blue {
+            background: $blue;
+            @include square(5);
+          }
+      
+          &.indigo {
+            background: $indigo;
+            @include square(6);
+          }
+      
+          &.violet {
+            background: $violet;
+            @include square(7);
+          }
+
+          &:hover{ // 이벤트 css
+            background-color: black;
+          }
+    }
+}
