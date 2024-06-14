@@ -1,29 +1,17 @@
-// Day1 사칙 연산 > 두수의 합
+// Day 1 출력 > 문자열 출력하기
 package Day01;
 
 import java.util.*;
 
 // 제한사항
-// -50,000 ≤ num1 ≤ 50,000
-// -50,000 ≤ num2 ≤ 50,000
-
-// num1	num2	result
-// 2	3		5
-// 100	2		102
+// 1 ≤ str의 길이 ≤ 1,000,000
+// str에는 공백이 없으며, 첫째 줄에 한 줄로만 주어집니다.
 
 public class Solution1 {
-	
-	public int solution(int num1, int num2) {
-		
-        int answer = num1 + num2;
-        return answer;
-    }
-	
 	public static void main(String[] args) {
-		int num1 = 100;
-		int num2 = 2;
-		int result = new Solution1().solution(num1, num2);
-		System.out.println(result);
-	}
+        Scanner sc = new Scanner(System.in);
+        String a = sc.next();
+        System.out.println(a);
+    }
 
 }
